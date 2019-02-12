@@ -2,9 +2,8 @@ import style from './scss/style.scss';
 
 import { DisplayCanvas } from './components/DisplayCanvas';
 
-const canvasOptions = new DisplayCanvas({
-    querySelectorString: '.canvas-image',
-    elementClass: 'canvas-img'
+const canvasImage = new DisplayCanvas({
+    querySelectorString: '.canvas-output'
 });
-canvasOptions.saveShadowAndAlphaSettings();
-canvasOptions.restoreShadowAndAlphaSettings();
+canvasImage.saveShadowAndAlphaSettings();
+canvasImage.restoreShadowAndAlphaSettings();

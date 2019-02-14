@@ -7,3 +7,10 @@ const canvasImage = new DisplayCanvas({
 });
 canvasImage.saveShadowAndAlphaSettings();
 canvasImage.restoreShadowAndAlphaSettings();
+
+function run() {
+    console.log('run');
+    window.requestAnimationFrame(run);
+}
+
+run();

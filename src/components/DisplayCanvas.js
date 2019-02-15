@@ -16,6 +16,47 @@ export class DisplayCanvas {
         }
     }
 
+    paintBackground(canvasOptions) {
+        const canvasSize = this.getWidthHeight();
+        if (this.context2d) {
+            this.saveShadowAndAlphaSettings();
+            this.context2d.fillStyle = canvasOptions.color;
+            this.context2d.fillRect(0, 0, canvasSize.x, canvasSize.y);
+            this.restoreShadowAndAlphaSettings();
+        }
+    }
+
+    writeText(text) {
+        if (this.context2d) {
+            this.saveShadowAndAlphaSettings();
+            if ((text.text) && (text.text !== '')) {
+                this.addText(text);
+            }
+            this.restoreShadowAndAlphaSettings();
+        }
+    }
+
+    addText(text) {
+        this.context2d.fillStyle = text.color;
+        this.context2d.font = `normal normal ${text.fontSize}px ${text.fontFamily}`;
+        this.addShadow(text);
+        if (text.strokeEnabled) {
+            this.context2d.strokeStyle = text.strokeColor;
+            this.context2d.lineWidth = text.strokeWidth;
+            this.context2d.strokeText(text.text, text.positionX, text.positionY);
+        }
+        this.context2d.fillText(text.text, text.positionX, text.positionY);
+    }
+
+    addShadow(text) {
+        if (text.shadowEnabled) {
+            this.context2d.shadowColor = text.shadowColor;
+            this.context2d.shadowBlur = text.shadowBlur;
+            this.context2d.shadowOffsetX = text.shadowOffsetX;
+            this.context2d.shadowOffsetY = text.shadowOffsetY;
+        }
+    }
+
     setCanvasSize() {
         const widthHeight = getMaxCanvasSize();
         this.htmlCanvasElement.width = widthHeight.maxWidth;

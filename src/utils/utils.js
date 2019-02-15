@@ -7,8 +7,8 @@ export function getMaxCanvasSize() {
     };
 }
 
-export const AppStates = [
-    'APP_START',
-    'APP_RUN',
-    'APP_END'
-];
+export const AppStates = {
+    init: 'APP_INIT',
+    loading: 'APP_LOAD',
+    start: 'APP_START'
+};

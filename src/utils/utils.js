@@ -6,9 +6,3 @@ export function getMaxCanvasSize() {
         maxHeight: Math.floor(rect.height - 30)
     };
 }
-
-export const AppStates = {
-    init: 'APP_INIT',
-    loading: 'APP_LOAD',
-    start: 'APP_START'
-};

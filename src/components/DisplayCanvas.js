@@ -16,6 +16,39 @@ export class DisplayCanvas {
         }
     }
 
+    paintImage(image) {
+        if (this.context2d) {
+            this.saveShadowAndAlphaSettings();
+            if (image.image) {
+                this.context2d.save();
+                if (image.transparency) {
+                    this.context2d.globalAlpha = image.transparency / 100;
+                }
+                if (image.rotation) {
+                    this.rotateImage(image.rotation, image.rotationCenter);
+                }
+                this.context2d.drawImage(image.image, image.x, image.y, image.width, image.height);
+                this.context2d.restore();
+            }
+            this.restoreShadowAndAlphaSettings();
+        }
+    }
+
+    calculateImageSize(image, scale) {
+        const divider = 100 / scale;
+        if (image) {
+            return {
+                x: Math.round(image.width / divider),
+                y: Math.round(image.height / divider)
+            };
+        }
+    }
+
+    rotateImage(rotation, rotationCenter) {
+        this.context2d.translate(rotationCenter.x, rotationCenter.y);
+        this.context2d.rotate(rotation * Math.PI / 180);
+    }
+
     paintBackground(canvasOptions) {
         const canvasSize = this.getWidthHeight();
         if (this.context2d) {

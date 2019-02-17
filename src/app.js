@@ -1,22 +1,27 @@
 import style from './scss/style.scss';
 
-import { Application } from './utils/model/application';
-import { LoadAssets } from './utils/model/loadAssets';
-import { StartScreen } from './utils/model/startScreen';
+import { Application } from './model/application';
+import { LoadAssets } from './model/loadAssets';
+import { StartScreen } from './model/startScreen';
 import { DisplayCanvas } from './components/DisplayCanvas';
+import { GameScreen } from './model/gameScreen';
 
-const canvasImage = new DisplayCanvas({
-    querySelectorString: '.canvas-output'
+window.addEventListener('load', () => {
+    const canvasImage = new DisplayCanvas({
+        querySelectorString: '.canvas-output'
+    });
+    const app = new Application();
+    const loadAssets = new LoadAssets(app, canvasImage);
+    const startScreen = new StartScreen(app, canvasImage);
+    const gameScreen = new GameScreen(app, canvasImage);
+    app.init();
+
+    function run() {
+        loadAssets.run();
+        startScreen.run();
+        gameScreen.run();
+        window.requestAnimationFrame(run);
+    }
+
+    run();
 });
-const app = new Application();
-const loadAssets = new LoadAssets(app, canvasImage);
-const startScreen = new StartScreen(app, canvasImage);
-app.init();
-
-function run() {
-    loadAssets.run();
-    startScreen.run();
-    window.requestAnimationFrame(run);
-}
-
-run();

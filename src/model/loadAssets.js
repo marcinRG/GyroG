@@ -1,5 +1,4 @@
-import { AppStates } from '../utils';
-import { images } from '../settings/app.settings';
+import { AppStates, images } from '../settings/app.settings';
 
 export class LoadAssets {
     constructor(application, canvasImage) {
@@ -25,6 +24,7 @@ export class LoadAssets {
 
     checkAllAssetsLoaded() {
         if (this.maxAssets === this.progress) {
+            this.application.addImages(this.images);
             this.application.state = AppStates.start;
         }
     }

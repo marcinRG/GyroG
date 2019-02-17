@@ -3,12 +3,9 @@
 @import 'utils/fonts';
 
 @include custom-font-mixin-simplified('PressStart', 'pressstart2p', $path-press-start-fonts);
-@include custom-font-mixin-simplified('ComputerPixel', 'computer_pixel-7-webfont', $path-computer-pixel-fonts);
 
 @mixin font-press-start {
   font-family: 'PressStart', monospace;
 }
 
-@mixin font-press-start {
-  font-family: 'ComputerPixel', monospace;
-}
+

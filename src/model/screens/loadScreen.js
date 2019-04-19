@@ -1,6 +1,6 @@
-import { AppStates, images } from '../settings/app.settings';
+import { AppStates, images } from '../../settings/app.settings';
 
-export class LoadAssets {
+export class LoadScreen {
     constructor(application, canvasImage) {
         this.application = application;
         this.canvasImage = canvasImage;

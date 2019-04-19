@@ -1,4 +1,4 @@
-import { AppStates } from '../settings/app.settings';
+import { AppStates } from '../../settings/app.settings';
 
 export class StartScreen {
     constructor(application, canvasImage) {
@@ -115,7 +115,6 @@ export class StartScreen {
 
     handleInputs() {
         const keyPresses = this.application.keyHandler.keyPresses;
-        console.log('keypess');
         if (keyPresses['1'] === true) {
             this.startState = StartStates.start;
             this.application.state = AppStates.game;

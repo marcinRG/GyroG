@@ -125,4 +125,14 @@ export class DisplayCanvas {
             y: rect.height
         };
     }
+
+    drawCircle(circle) {
+        this.context2d.beginPath();
+        this.context2d.fillStyle = circle.color;
+        this.context2d.strokeStyle = circle.color;
+        this.context2d.lineWidth = circle.lineWidth;
+        this.context2d.arc(circle.x, circle.y, circle.radius, ((Math.PI / 180) * 0), ((Math.PI / 180) * 360), false);
+        this.context2d.fill();
+        this.context2d.closePath();
+    }
 }

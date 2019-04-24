@@ -16,6 +16,7 @@ export class Application {
     }
 
     init() {
-        this.state = AppStates.loading;
+        //this.state = AppStates.loading;
+        this.state = AppStates.game;
     }
 }

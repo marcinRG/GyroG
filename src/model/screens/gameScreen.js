@@ -5,12 +5,11 @@ export class GameScreen {
     constructor(application, canvasImage) {
         this.application = application;
         this.canvasImage = canvasImage;
-        this.backgroundSky = new Sky();
+        this.backgroundSky = new Sky(this.canvasImage);
     }
 
     run() {
         if (this.application.state === AppStates.game) {
-            this.canvasImage.paintBackground({ color: 'magenta' });
             this.backgroundSky.animate();
         }
     }

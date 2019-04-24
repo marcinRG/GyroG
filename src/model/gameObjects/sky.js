@@ -2,23 +2,18 @@ import { getRandomIntInclusive } from './../../utils/utils';
 import { Star } from './star';
 
 export class Sky {
-    constructor() {
-        this.stars = createStars();
-        if (arrayExist(this.stars)) {
-            console.log('sky');
-        }
+    constructor(canvasImage) {
+        this.canvasImage = canvasImage;
+        this.stars = createStars(this.canvasImage);
     }
 
     animate() {
+        this.canvasImage.paintBackground({ color: 'black' });
         if (arrayExist(this.stars)) {
             this.stars.forEach((value) => {
-                console.log(value);
+                value.animate();
             });
         }
-
-        // this.stars.forEach((star) => {
-        //    console.log(star);
-        // });
     }
 }
 
@@ -26,14 +21,12 @@ function arrayExist(arrayToCheck) {
     return (arrayToCheck && Array.isArray(arrayToCheck) && arrayToCheck.length > 0);
 }
 
-function createStars() {
+function createStars(canvasImage) {
     let arrayOfStars = [];
-    const numberOfStars = getRandomIntInclusive(5, 20);
-    console.log(numberOfStars);
+    const numberOfStars = getRandomIntInclusive(20, 70);
     for (let i = 0; i < numberOfStars; i++) {
-        const star = new Star(10, 10, 2, 1);
+        const star = new Star(canvasImage);
         arrayOfStars.push(star);
     }
-    console.log(arrayOfStars);
     return arrayOfStars;
 }
